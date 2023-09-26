@@ -3,14 +3,14 @@
 // scope del worker.
 importScripts('js/sw-utils.js'); // Debemos agregarlo al App Shell.
 
-const STATIC_CACHE = 'static-v2';
-const DYNAMIC_CACHE = 'dynamic-v1';
+const STATIC_CACHE = 'static-v3';
+const DYNAMIC_CACHE = 'dynamic-v2';
 const INMUTABLE_CACHE = 'inmutable-v1';
 
 // Los APP_SHELL son los recursos minimos que la aplicación necesita.
 
 const APP_SHELL = [
-    // '/',
+    // '/', // Se comenta para no tener error en github pages.
     'index.html',
     'css/style.css',
     'img/favicon.ico',
@@ -52,8 +52,13 @@ self.addEventListener('activate', e => {
 
         keys.forEach(key => {
 
-            // Para eliminar solo el cache estatico antigüo:
+            // Para eliminar el cache estatico antigüo:
             if (key !== STATIC_CACHE && key.includes('static')) {
+                return caches.delete(key);
+            }
+
+            // Para eliminar el cache dinamico antigüo:
+            if (key !== DYNAMIC_CACHE && key.includes('dynamic')) {
                 return caches.delete(key);
             }
         })
