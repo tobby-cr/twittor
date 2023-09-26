@@ -10,7 +10,7 @@ const INMUTABLE_CACHE = 'inmutable-v1';
 // Los APP_SHELL son los recursos minimos que la aplicación necesita.
 
 const APP_SHELL = [
-    '/',
+    // '/',
     'index.html',
     'css/style.css',
     'img/favicon.ico',

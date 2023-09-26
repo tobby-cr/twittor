@@ -1,7 +1,16 @@
+var url = window.location.href;
+var swLocation = '/twittor/sw.js';
+
 
 // Instalacion del service worker:
 if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('/sw.js');
+
+    // Si estamos en desarrollo usa esta ubicacion:
+    if (url.includes('localhost')) {
+        swLocation = '/sw.js';
+    }
+    
+    navigator.serviceWorker.register(swLocation);
 }
 
 
